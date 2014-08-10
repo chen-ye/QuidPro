@@ -102,3 +102,20 @@ body {
     font-size: 1rem;
   }
 }
+
+/*****
+  Shit
+******/
+/*
+EmojiSymbols Font (c)blockworks - Kenichi Kaneko
+http://emojisymbols.com/
+*/
+
+#deal_emoji {
+/*font-family: "Apple Color Emoji", "Segoe UI Emoji", "NotoColorEmoji", "Segoe UI Symbol", "Android Emoji", "EmojiSymbols", Symbola, "lucida grande",tahoma,verdana,arial,sans-serif;*/
+  font-family: "EmojiSymbols";
+
+  
+src: url('http://fsymbols.org/css/EmojiSymbols-Regular.woff') format('woff');
+
+}
