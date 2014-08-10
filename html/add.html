@@ -40,6 +40,7 @@
          data.perk_emoji = $("perk_emoji").val();
          data.funding_target = parseInt($("#funding_target").val, 10);
          data.funding_increment = parseInt($("#funding_increment").val,10);
+         data.venmo_id = $("#venmo_id").val();
          data.current_funding = 0;
            
          var deal = new DealsObject();
@@ -135,6 +136,13 @@
                      </div>
                   </div>
                </div>
+                <div class="field">
+                     <label>Venmo Account</label>
+                     <div class="ui left labeled icon input">
+                        <input type="text" placeholder="10" id="venmo_id">
+                        <i class="user icon"></i>
+                     </div>
+                  </div>
                <div class="ui error message">
                   <div class="header">We noticed some issues</div>
                </div>
