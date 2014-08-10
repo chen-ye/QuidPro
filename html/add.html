@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <!-- Standard Meta -->
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+      <!-- Site Properities -->
+      <title>Add Deal</title>
+      <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Open+Sans:300italic,400,300,700' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" type="text/css" href="../semantic/packaged/css/semantic.css">
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.js"></script>
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.address/1.6/jquery.address.js"></script>
+      <script src="../semantic/packaged/javascript/semantic.js"></script>
+      <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
+      <script type="text/javascript">
+         /* global $,document,console,Parse */
+         $(document).ready(function() {
+         
+           
+         var parseAPPID = "OJwQbLREQ9YMD77jRbG5PhHylsCb65Bt9KJLpvOO";
+         var parseJSID = "MxXlIbBVhtiSSaRNJOpCm02V4gxIiLOZ5zqrIb7w";
+         
+         Parse.initialize(parseAPPID, parseJSID);
+         var DealsObject = Parse.Object.extend("Deals");
+         $("#perkForm").on("submit", function(e) {
+           
+         e.preventDefault();
+         console.log("Handling the submit");
+         //add error handling here
+         //gather the form data
+   
+         var data = {};
+         data.foursquare_id = $("#foursquare_id").val();
+         data.deal_name = $("#deal_name").val();
+         data.deal_cta = $("#deal_cta").val();
+         data.deal_emoji = $("#deal_emoji").val();
+         data.perk_name = $("#perk_name").val();
+         data.perk_cta = $("#perk_cta").val();
+         data.perk_emoji = $("perk_emoji").val();
+         data.funding_target = parseInt($("#funding_target").val, 10);
+         data.funding_increment = parseInt($("#funding_increment").val,10);
+         data.current_funding = 0;
+           
+         var deal = new DealsObject();
+         deal.save(data, {
+            success: function(object) {
+              $(".success").show();
+                alert('New object created with objectId: ' + deal.id);
+            },
+            error: function(model, error) {
+              $(".error").show();
+                alert('Failed to create new object, with error code: ' + error.message);
+            }
+          });
+         
+         });
+         return false;
+         });
+      </script>
+      <link rel="stylesheet" type="text/css" href="../css/quidpro.css">
+      <!--<script src="feed.js"></script> -->
+   </head>
+   <body>
+      <div class="container">
+         <h1>Add a deal</h1>
+         <form id="perkForm">
+            <div class="ui form segment">
+               <div class="field">
+                  <label>Foursquare ID</label>
+                  <div class="ui left labeled icon input">
+                     <input type="text" placeholder="474d8bbdf964a520a54c1fe3" id="foursquare_id">
+                     <i class="map icon"></i>
+                  </div>
+               </div>
+               <div class="fields">
+                  <div class="two wide field">
+                     <label>Deal Emoji</label>
+                     <div class="ui left labeled icon input">
+                        <input type="text" placeholder="🌇" value="🌇" id="deal_name">
+                        <i class="smile icon"></i>
+                     </div>
+                  </div>
+                  <div class="four wide field">
+                     <label>Deal Call to Action</label>
+                     <div class="ui left labeled icon input">
+                        <input type="text" placeholder="help us fund a" id="deal_cta">
+                        <i class="quote left icon"></i>
+                     </div>
+                  </div>
+                  <div class="ten wide field">
+                     <label>Deal Name</label>
+                     <div class="ui left labeled icon input">
+                        <input type="text" placeholder="Rooftop Expansion" id="deal_name">
+                        <i class="tag icon"></i>
+                     </div>
+                  </div>
+               </div>
+               <div class="fields">
+                  <div class="two wide field">
+                     <label>Perk Emoji</label>
+                     <div class="ui left labeled icon input">
+                        <input type="text" placeholder="🍹" value="🍹" id="deal_emoji">
+                        <i class="smile icon"></i>
+                     </div>
+                  </div>
+                  <div class="four wide field">
+                     <label>Perk Call to Action</label>
+                     <div class="ui left labeled icon input">
+                        <input type="text" placeholder="in exchange for" id="perk_cta">
+                        <i class="quote right icon"></i>
+                     </div>
+                  </div>
+                  <div class="ten wide field">
+                     <label>Perk Name</label>
+                     <div class="ui left labeled icon input">
+                        <input type="text" placeholder="Discounted Drinks" id="perk_name">
+                        <i class="trophy icon"></i>
+                     </div>
+                  </div>
+               </div>
+               <div class="two fields">
+                  <div class="field">
+                     <label>Funding Target</label>
+                     <div class="ui left labeled icon input">
+                        <input type="text" placeholder="300" id="funding_target">
+                        <i class="money icon"></i>
+                     </div>
+                  </div>
+                  <div class="field">
+                     <label>Funding Increment</label>
+                     <div class="ui left labeled icon input">
+                        <input type="text" placeholder="10" id="funding_increment">
+                        <i class="dollar icon"></i>
+                     </div>
+                  </div>
+               </div>
+               <div class="ui error message">
+                  <div class="header">We noticed some issues</div>
+               </div>
+               <button class="ui green submit button">Add Perk</button>
+            </div>
+         </form>
+      </div>
+   </body>
+</html>

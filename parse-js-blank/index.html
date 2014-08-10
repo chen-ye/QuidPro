@@ -1,0 +1,72 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+
+  <title>My Parse App</title>
+  <meta name="description" content="My Parse App">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
+</head>
+
+<body>
+  
+  <div id="main">
+    <h1>You're ready to use Parse!</h1>
+
+    <p>Read the documentation and start building your JavaScript app:</p>
+
+    <ul>
+      <li><a href="https://www.parse.com/docs/js_guide">Parse JavaScript Guide</a></li>
+      <li><a href="https://www.parse.com/docs/js">Parse JavaScript API Documentation</a></li>
+    </ul>
+
+    <div style="display:none" class="error">
+      Looks like there was a problem saving the test object. Make sure you've set your application ID and javascript key correctly in the call to <code>Parse.initialize</code> in this file.
+    </div>
+
+    <div style="display:none" class="success">
+      <p>We've also just created your first object using the following code:</p>
+      
+        <code>
+          var TestObject = Parse.Object.extend("TestObject");<br/>
+          var testObject = new TestObject();<br/>
+          testObject.save({foo: "bar"});
+        </code>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    Parse.initialize("OJwQbLREQ9YMD77jRbG5PhHylsCb65Bt9KJLpvOO", "MxXlIbBVhtiSSaRNJOpCm02V4gxIiLOZ5zqrIb7w");
+    
+    var DealsObject = Parse.Object.extend("Deals");
+    var dealsObject = new DealsObject();
+      
+      dealsObject.set("foursquare_id", "474d8bbdf964a520a54c1fe3");
+      dealsObject.set("deal_name","Rooftop Expansion");
+      dealsObject.set("deal_cta","help us fund");
+      dealsObject.set("deal_emoji","🌇");
+      dealsObject.set("perk_cta","in exchange for");
+      dealsObject.set("perk_name","Discount Drinks");
+      dealsObject.set("perk_emoji","🍹");
+      dealsObject.set("funding_target",300); //in $$
+      dealsObject.set("funding_increment",10);
+      dealsObject.set("current_funding",100);
+      
+      
+      dealsObject.save(null, {
+      success: function(object) {
+        $(".success").show();
+          alert('New object created with objectId: ' + dealsObject.id);
+      },
+      error: function(model, error) {
+        $(".error").show();
+          alert('Failed to create new object, with error code: ' + error.message);
+      }
+    });
+  </script>
+</body>
+
+</html>
